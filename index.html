@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>5 dias para los 5 meses</title>
+<title>5 días para los 5 meses</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -89,7 +89,7 @@
 </head>
 <body>
 
-<h1>5 dias para los 5 meses ❤️</h1>
+<h1>5 días para los 5 meses ❤️</h1>
 <button id="startBtn">Comenzar</button>
 
 <div id="cards">
@@ -130,13 +130,13 @@ const startBtn = document.getElementById('startBtn');
 const cardsDiv = document.getElementById('cards');
 const cards = document.querySelectorAll('.card');
 
-// Fechas de desbloqueo en horario Argentina (UTC-3)
+// Fechas de desbloqueo en horario Argentina (local)
 const fechasTarjetas = [
-  new Date(Date.UTC(2025, 7, 20, 3, 0, 0)), // 21-8-25 00:00 ART = 03:00 UTC
-  new Date(Date.UTC(2025, 7, 22, 3, 0, 0)),
-  new Date(Date.UTC(2025, 7, 23, 3, 0, 0)),
-  new Date(Date.UTC(2025, 7, 24, 3, 0, 0)),
-  new Date(Date.UTC(2025, 7, 25, 3, 0, 0))
+  new Date(2025, 7, 20, 0, 0, 0), // 21-08-2025 00:00 ART
+  new Date(2025, 7, 22, 0, 0, 0),
+  new Date(2025, 7, 23, 0, 0, 0),
+  new Date(2025, 7, 24, 0, 0, 0),
+  new Date(2025, 7, 25, 0, 0, 0)
 ];
 
 startBtn.addEventListener('click', () => {
@@ -150,7 +150,14 @@ cards.forEach((card, index) => {
     if (ahora >= fechasTarjetas[index]) {
       card.classList.toggle('flipped'); // permite voltear
     } else {
-      alert("Esta tarjeta se desbloqueará el " + fechasTarjetas[index].toLocaleDateString('es-AR'));
+      const fecha = fechasTarjetas[index];
+      // Formatear fecha y hora en español para Argentina
+      const opciones = { 
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+        hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'America/Argentina/Buenos_Aires'
+      };
+      const fechaStr = fecha.toLocaleString('es-AR', opciones);
+      alert("Esta tarjeta se desbloqueará el " + fechaStr);
     }
   });
 });
