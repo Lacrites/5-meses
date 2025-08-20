@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>5 Meses, 5 Detalles</title>
+<title>5 dias para los 5 meses</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -89,7 +89,7 @@
 </head>
 <body>
 
-<h1>5 Meses, 5 Detalles ❤️</h1>
+<h1>5 dias para los 5 meses ❤️</h1>
 <button id="startBtn">Comenzar</button>
 
 <div id="cards">
@@ -126,20 +126,34 @@
 </div>
 
 <script>
-  const startBtn = document.getElementById('startBtn');
-  const cardsDiv = document.getElementById('cards');
-  const cards = document.querySelectorAll('.card');
+const startBtn = document.getElementById('startBtn');
+const cardsDiv = document.getElementById('cards');
+const cards = document.querySelectorAll('.card');
 
-  startBtn.addEventListener('click', () => {
-    startBtn.style.display = 'none';
-    cardsDiv.style.display = 'flex';
-  });
+// Fechas de desbloqueo en horario Argentina (UTC-3)
+const fechasTarjetas = [
+  new Date(Date.UTC(2025, 7, 20, 3, 0, 0)), // 21-8-25 00:00 ART = 03:00 UTC
+  new Date(Date.UTC(2025, 7, 22, 3, 0, 0)),
+  new Date(Date.UTC(2025, 7, 23, 3, 0, 0)),
+  new Date(Date.UTC(2025, 7, 24, 3, 0, 0)),
+  new Date(Date.UTC(2025, 7, 25, 3, 0, 0))
+];
 
-  cards.forEach(card => {
-    card.addEventListener('click', () => {
-      card.classList.toggle('flipped');
-    });
+startBtn.addEventListener('click', () => {
+  startBtn.style.display = 'none';
+  cardsDiv.style.display = 'flex';
+});
+
+cards.forEach((card, index) => {
+  card.addEventListener('click', () => {
+    const ahora = new Date();
+    if (ahora >= fechasTarjetas[index]) {
+      card.classList.toggle('flipped'); // permite voltear
+    } else {
+      alert("Esta tarjeta se desbloqueará el " + fechasTarjetas[index].toLocaleDateString('es-AR'));
+    }
   });
+});
 </script>
 
 </body>
