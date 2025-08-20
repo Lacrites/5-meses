@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 Meses, 5 Detalles</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #ffe6f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  h1 {
+    text-align: center;
+    color: #d6336c;
+  }
+
+  #startBtn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    background-color: #ff4d94;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  #cards {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 15px;
+  }
+
+  .card-container {
+    perspective: 1000px;
+  }
+
+  .card {
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    border-radius: 12px;
+  }
+
+  .card.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .card .front, .card .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .card .front {
+    background-color: #ff99c8;
+    color: white;
+    font-size: 2em;
+  }
+
+  .card .back {
+    background-color: #d6336c;
+    color: white;
+    transform: rotateY(180deg);
+    font-size: 0.9em;
+  }
+</style>
+</head>
+<body>
+
+<h1>5 Meses, 5 Detalles ❤️</h1>
+<button id="startBtn">Comenzar</button>
+
+<div id="cards">
+  <div class="card-container">
+    <div class="card">
+      <div class="front">💖</div>
+      <div class="back">Eres mi alegría diaria.</div>
+    </div>
+  </div>
+  <div class="card-container">
+    <div class="card">
+      <div class="front">💌</div>
+      <div class="back">Amo tu sonrisa contagiosa.</div>
+    </div>
+  </div>
+  <div class="card-container">
+    <div class="card">
+      <div class="front">🌹</div>
+      <div class="back">Gracias por apoyarme siempre.</div>
+    </div>
+  </div>
+  <div class="card-container">
+    <div class="card">
+      <div class="front">✨</div>
+      <div class="back">Cada momento contigo es especial.</div>
+    </div>
+  </div>
+  <div class="card-container">
+    <div class="card">
+      <div class="front">❤️</div>
+      <div class="back">Te amo más cada día.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const startBtn = document.getElementById('startBtn');
+  const cardsDiv = document.getElementById('cards');
+  const cards = document.querySelectorAll('.card');
+
+  startBtn.addEventListener('click', () => {
+    startBtn.style.display = 'none';
+    cardsDiv.style.display = 'flex';
+  });
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('flipped');
+    });
+  });
+</script>
+
+</body>
+</html>
